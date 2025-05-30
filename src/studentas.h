@@ -5,9 +5,9 @@
 class Studentas {
 private:
 
-    std::string vardas, pavarde;
-    int egzas;
-    std::vector<int> n;
+    std::string vardas_, pavarde_;
+    int egzas_;
+    std::vector<int> n_;
 
 public:
     
@@ -20,7 +20,20 @@ public:
      * Konstruktorius, kuris sukuria studentą su nurodytais duomenimis.
      */
     Studentas(const std::string& vardas, const std::string& pavarde, int egzas, const std::vector<int>& n) 
-        : vardas(vardas), pavarde(pavarde), egzas(egzas), n(n) {}
+        : vardas_(vardas), pavarde_(pavarde), egzas_(egzas), n_(n) {}
+
+    inline string getVardas() const {
+        return vardas_;
+    }
+    inline string getPavarde() const {
+        return pavarde_;
+    }
+    inline int getEgzas() const {
+        return egzas_;
+    }
+    inline const std::vector<int>& getNamuDarbai() const {
+        return n_;
+    }
 
 
     double vidurkis() const;

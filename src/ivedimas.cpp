@@ -126,37 +126,19 @@ void skaitymas_is_failo_logika(Container(Studentas) &S, int &ilgiausias_vardas, 
     while (getline(ivestis, eilute))
     {
         stringstream iss(eilute);
-        Studentas naujas;
-        int paz;
+        try {
+            Studentas naujas(iss);
 
-        if (!(iss >> naujas.vardas >> naujas.pavarde))
-        {
+            // Track longest name lengths
+            ilgiausias_vardas = max(ilgiausias_vardas, (int)naujas.vardas.length());
+            ilgiausia_pavarde = max(ilgiausia_pavarde, (int)naujas.pavarde.length());
+
+            // Add student to the list
+            S.push_back(naujas);
+        } catch (const std::exception& e) {
             cout << "Netinkamas duomenų formatas eilutėje: " << eilute << endl;
             continue;
         }
-
-        while (iss >> paz)
-        {
-            naujas.n.push_back(paz);
-        }
-
-        // Bent vienas pazymys yra
-        if (!naujas.n.empty())
-        {
-            naujas.egzas = naujas.n.back(); // Last value is the exam
-            naujas.n.pop_back();            // Remove exam from grades
-        }
-        else
-        {
-            naujas.egzas = 0; // Default exam grade if none found
-        }
-
-        // Track longest name lengths
-        ilgiausias_vardas = max(ilgiausias_vardas, (int)naujas.vardas.length());
-        ilgiausia_pavarde = max(ilgiausia_pavarde, (int)naujas.pavarde.length());
-
-        // Add student to the list
-        S.push_back(naujas);
     }
 
     ivestis.close();
