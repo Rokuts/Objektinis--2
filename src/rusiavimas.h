@@ -3,13 +3,13 @@
 #include "headers.h"
 #include "apskaiciuotas_studentas.h"
 
-bool compareByVidurkis(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b);
-bool compareByMediana(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b);
-bool compareByVardas(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b);
-bool compareByPavarde(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b);
+bool compareByVidurkis(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b);
+bool compareByMediana(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b);
+bool compareByVardas(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b);
+bool compareByPavarde(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b);
 
-void kaip_rusiuojam_ir_rusiuojam(Container(apskaiciuotas_studentas) &S);
-void sort_pagal_pasirinkima(int pasirinkimas, Container(apskaiciuotas_studentas) &S);
-void skaidyti_studentus(Container(apskaiciuotas_studentas) &S, Container(const apskaiciuotas_studentas*) &vargsiukai, Container(const apskaiciuotas_studentas*) &kietiakiai, bool naudoti_vidurki);
-void skaidyti_strategija2(Container(apskaiciuotas_studentas) &S, Container(apskaiciuotas_studentas) &vargsiukai, bool naudoti_vidurki);
-void skaidyti_strategija3_vector(const Container(apskaiciuotas_studentas)& A_S, Container(const apskaiciuotas_studentas*)& vargsiukai, Container(const apskaiciuotas_studentas*)& kietiakiai, bool naudoti_vidurki);
+void kaip_rusiuojam_ir_rusiuojam(Container(ApskaiciuotasStudentas) &S);
+void sort_pagal_pasirinkima(int pasirinkimas, Container(ApskaiciuotasStudentas) &S);
+void skaidyti_studentus(Container(ApskaiciuotasStudentas) &S, Container(const ApskaiciuotasStudentas*) &vargsiukai, Container(const ApskaiciuotasStudentas*) &kietiakiai, bool naudoti_vidurki);
+void skaidyti_strategija2(Container(ApskaiciuotasStudentas) &S, Container(ApskaiciuotasStudentas) &vargsiukai, bool naudoti_vidurki);
+void skaidyti_strategija3_vector(const Container(ApskaiciuotasStudentas)& A_S, Container(const ApskaiciuotasStudentas*)& vargsiukai, Container(const ApskaiciuotasStudentas*)& kietiakiai, bool naudoti_vidurki);

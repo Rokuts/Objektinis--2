@@ -1,20 +1,20 @@
 #include "rusiavimas.h"
 
 //palyginimo funkcijos:
-bool compareByVidurkis(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
-    return a.vidurkis > b.vidurkis;
+bool compareByVidurkis(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b) {
+    return a.getVidurkis() > b.getVidurkis();
 }
-bool compareByMediana(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
-    return a.mediana > b.mediana;
+bool compareByMediana(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b) {
+    return a.getMediana() > b.getMediana();
 }
-bool compareByVardas(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
-    return a.studentas.getVardas() < b.studentas.getVardas();
+bool compareByVardas(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b) {
+    return a.getVardas() < b.getVardas();
 }
-bool compareByPavarde(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
-    return a.studentas.getPavarde() < b.studentas.getPavarde();
+bool compareByPavarde(ApskaiciuotasStudentas &a, ApskaiciuotasStudentas &b) {
+    return a.getPavarde() < b.getPavarde();
 }
 
-void kaip_rusiuojam_ir_rusiuojam(Container(apskaiciuotas_studentas) &S){
+void kaip_rusiuojam_ir_rusiuojam(Container(ApskaiciuotasStudentas) &S){
     int pasirinkimas;
     cout << "Pasirinkite rikiavimo buda:"<<endl;
     cout << "1 - Pagal varda"<<endl;
@@ -33,7 +33,7 @@ void kaip_rusiuojam_ir_rusiuojam(Container(apskaiciuotas_studentas) &S){
     sort_pagal_pasirinkima(pasirinkimas, S);
 }
 
-void sort_pagal_pasirinkima(int pasirinkimas, Container(apskaiciuotas_studentas) &S)
+void sort_pagal_pasirinkima(int pasirinkimas, Container(ApskaiciuotasStudentas) &S)
 {
     
     switch (pasirinkimas)
@@ -55,11 +55,11 @@ void sort_pagal_pasirinkima(int pasirinkimas, Container(apskaiciuotas_studentas)
 }
 
 // 1 strategija: Perkėlimas į du naujus konteinerius ('vargšiukai' ir 'kietiakiai')
-void skaidyti_studentus(Container(apskaiciuotas_studentas) &S, Container(const apskaiciuotas_studentas*) &vargsiukai, Container(const apskaiciuotas_studentas*) &kietiakiai, bool naudoti_vidurki)
+void skaidyti_studentus(Container(ApskaiciuotasStudentas) &S, Container(const ApskaiciuotasStudentas*) &vargsiukai, Container(const ApskaiciuotasStudentas*) &kietiakiai, bool naudoti_vidurki)
 {
     for (const auto& studentas : S) {
         if (naudoti_vidurki) {
-            if (studentas.vidurkis < 5.0) {
+            if (studentas.getVidurkis() < 5.0) {
                 vargsiukai.push_back(&studentas);
             }
             else {
@@ -67,7 +67,7 @@ void skaidyti_studentus(Container(apskaiciuotas_studentas) &S, Container(const a
             }
         }
         else {
-            if (studentas.mediana < 5.0) {
+            if (studentas.getMediana() < 5.0) {
                 vargsiukai.push_back(&studentas);
             }
             else {
@@ -78,14 +78,14 @@ void skaidyti_studentus(Container(apskaiciuotas_studentas) &S, Container(const a
 }
 
 // 2 strategija: Perkėlimas ir trynimas į vieną naują konteinerį ('vargšiukai')
-void skaidyti_strategija2(Container(apskaiciuotas_studentas) &S, Container(apskaiciuotas_studentas) &vargsiukai, bool naudoti_vidurki) {
+void skaidyti_strategija2(Container(ApskaiciuotasStudentas) &S, Container(ApskaiciuotasStudentas) &vargsiukai, bool naudoti_vidurki) {
     auto it = S.begin();
     while (it != S.end()) {
         bool yra_vargsiukas;
         if (naudoti_vidurki) {
-            yra_vargsiukas = it->vidurkis < 5.0;
+            yra_vargsiukas = it->getVidurkis() < 5.0;
         } else {
-            yra_vargsiukas = it->mediana < 5.0;
+            yra_vargsiukas = it->getMediana() < 5.0;
         }
 
         if (yra_vargsiukas) {
@@ -98,18 +98,18 @@ void skaidyti_strategija2(Container(apskaiciuotas_studentas) &S, Container(apska
 }
 
 // 3 strategija. (1 strategijos optimizavimas)
-void skaidyti_strategija3_vector(const Container(apskaiciuotas_studentas)& A_S, Container(const apskaiciuotas_studentas*)& vargsiukai, Container(const apskaiciuotas_studentas*)& kietiakiai, bool naudoti_vidurki)
+void skaidyti_strategija3_vector(const Container(ApskaiciuotasStudentas)& A_S, Container(const ApskaiciuotasStudentas*)& vargsiukai, Container(const ApskaiciuotasStudentas*)& kietiakiai, bool naudoti_vidurki)
 {
     // Ši realizacija naudoja std::partition_copy efektyviai įgyvendinant 1 strategiją
     vargsiukai.clear();
     kietiakiai.clear();
 
-    auto kriterijus_func = [&](const apskaiciuotas_studentas& s) {
-        return naudoti_vidurki ? s.vidurkis : s.mediana;
+    auto kriterijus_func = [&](const ApskaiciuotasStudentas& s) {
+        return naudoti_vidurki ? s.getVidurkis() : s.getMediana();
     };
 
     // Naudojame partition_point, nes S jau surūšiuotas pagal kriterijų
-    auto partition_point = std::partition_point(A_S.begin(), A_S.end(), [&](const apskaiciuotas_studentas& s) {
+    auto partition_point = std::partition_point(A_S.begin(), A_S.end(), [&](const ApskaiciuotasStudentas& s) {
         return kriterijus_func(s) < 5.0;
     });
 

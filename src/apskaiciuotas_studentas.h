@@ -5,18 +5,22 @@
 
 struct ApskaiciuotasStudentas{
 private:
-    Studentas studentas;
-    double vidurkis;
-    double mediana;
+    Studentas studentas_;
+    double vidurkis_;
+    double mediana_;
 
 public:
     //Konstruktorius
     ApskaiciuotasStudentas(const Studentas& stud)
         : studentas(stud), vidurkis(stud.vidurkis()), mediana(stud.mediana()) {}
 
-    Studentas getStudentas() const { return studentas; }
-    double getVidurkis() const { return vidurkis; }
-    double getMediana() const { return mediana; }
+    inline Studentas getStudentas() const { return studentas; }
+    inline double getVidurkis() const { return vidurkis; }
+    inline double getMediana() const { return mediana; }
+
+    inline string getVardas() const { return studentas.getVardas(); }
+    inline string getPavarde() const { return studentas.getPavarde(); }
+    inline int getEgzas() const { return studentas.getEgzas(); }
 };
 
 

@@ -136,19 +136,19 @@ void laiko_tyrimas()
 
     auto etapas1 = high_resolution_clock::now();
 
-    Container(apskaiciuotas_studentas) A_S;
+    Container(ApskaiciuotasStudentas) A_S;
     Container_reserve(A_S, S.size());
     for (const auto &s : S)
     {
-        A_S.push_back(apskaiciuoti_stud(s));
+        A_S.push_back(ApskaiciuotasStudentas(s));
     }
 
     sort_pagal_pasirinkima(pasirinkimas + 3, A_S);
 
     auto etapas2 = high_resolution_clock::now();
 
-    Container(const apskaiciuotas_studentas *) vargsiukai;
-    Container(const apskaiciuotas_studentas *) kietiakai;
+    Container(const ApskaiciuotasStudentas *) vargsiukai;
+    Container(const ApskaiciuotasStudentas *) kietiakai;
 
     skaidyti_studentus(A_S, vargsiukai, kietiakai, !pasirinkimas);
 
@@ -198,11 +198,11 @@ void tyrimas_su_strategijom()
     auto pradzia = high_resolution_clock::now();
     skaitymas_is_failo_logika(S, ilgiausias_vardas, ilgiausia_pavarde, nuskaitymo_failas);
     
-    Container(apskaiciuotas_studentas) A_S;
+    Container(ApskaiciuotasStudentas) A_S;
     Container_reserve(A_S, S.size());
     for (const auto &s : S)
     {
-        A_S.push_back(apskaiciuoti_stud(s));
+        A_S.push_back(ApskaiciuotasStudentas(s));
     }
 
     sort_pagal_pasirinkima(pasirinkimas + 3, A_S);
@@ -210,17 +210,17 @@ void tyrimas_su_strategijom()
     if(strategijos_pasirinkimas == 1) {
         // 1 strategija;
         
-        Container(const apskaiciuotas_studentas *) vargsiukai;
-        Container(const apskaiciuotas_studentas *) kietiakai;
+        Container(const ApskaiciuotasStudentas *) vargsiukai;
+        Container(const ApskaiciuotasStudentas *) kietiakai;
         skaidyti_studentus(A_S, vargsiukai, kietiakai, !pasirinkimas);
     } else if(strategijos_pasirinkimas == 2) {
         // 2 strategija;
-        Container(apskaiciuotas_studentas) vargsiukai;
+        Container(ApskaiciuotasStudentas) vargsiukai;
         skaidyti_strategija2(A_S, vargsiukai, !pasirinkimas);
     } else if(strategijos_pasirinkimas == 3) {
         // 3 strategija;
-        Container(const apskaiciuotas_studentas *) vargsiukai;
-        Container(const apskaiciuotas_studentas *) kietiakai;
+        Container(const ApskaiciuotasStudentas *) vargsiukai;
+        Container(const ApskaiciuotasStudentas *) kietiakai;
         skaidyti_strategija3_vector(A_S, vargsiukai, kietiakai, !pasirinkimas);
     }
     auto pabaiga = high_resolution_clock::now();
