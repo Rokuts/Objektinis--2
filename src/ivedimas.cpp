@@ -1,41 +1,48 @@
 #include "ivedimas.h"
 #include "pagalbines.h"
 
-void vardo_pavardes_ivedimas(Container(Studentas) &S, Studentas &s, int &ilgiausias_vardas, int &ilgiausia_pavarde)
+std::tuple<string, string> vardo_pavardes_ivedimas(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiausia_pavarde)
 {
+    string vardas, pavarde;
+    
     cout << "Iveskite " << S.size() + 1 << "-o studento varda ir pavarde arba 'NE' jeigu nebera daugiau studentu." << endl;
-    cin >> s.vardas;
-    while (!ar_tik_raides(s.vardas))
+    cin >> vardas;
+    while (!ar_tik_raides(vardas))
     {
         cout << "!!!Rasta klaida!!! Bandykite ivesti varda dar karta." << endl;
-        cin >> s.vardas;
+        cin >> vardas;
     }
 
-    if(s.vardas=="NE"){         //Nebeivedinejame vardu ir pavardziu kai bent vienas yra = NE;
-        s.pavarde = "NE";
-        return;
+    if(vardas=="NE"){         //Nebeivedinejame vardu ir pavardziu kai bent vienas yra = NE;
+        pavarde = "NE";
+        return {vardas, pavarde};
     }
 
-    cin >> s.pavarde;
-    while (!ar_tik_raides(s.pavarde))
+    cin >> pavarde;
+    while (!ar_tik_raides(pavarde))
     {
         cout << "!!!Rasta klaida!!! Bandykite ivesti pavarde dar karta." << endl;
-        cin >> s.pavarde;
+        cin >> pavarde;
     }
 
-    ilgiausias_vardas = max(ilgiausias_vardas, (int)s.vardas.size());  // Vardo ilgis
-    ilgiausia_pavarde = max(ilgiausia_pavarde, (int)s.pavarde.size()); // Pavardes ilgis
+    ilgiausias_vardas = max(ilgiausias_vardas, (int)vardas.size());  // Vardo ilgis
+    ilgiausia_pavarde = max(ilgiausia_pavarde, (int)pavarde.size()); // Pavardes ilgis
+
+    return {vardas, pavarde};
 }
 
 void ivedimas_ranka(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiausia_pavarde)
 {
+    
     while(true){
-        Studentas s;     //vienas studentas kuri siuo metu ivedame apsirasom;
+        
+        vector<int> n; // Namu darbu pazymiai
+        int egzas; // Egzamino pazymys
         //---------------------------------------------------------------------------------------------------------------------------
         //Ivedinejame studentu vardus ir pavardes tol kol ivedamas NE.
 
-        vardo_pavardes_ivedimas(S, s, ilgiausias_vardas, ilgiausia_pavarde);
-        if(s.vardas=="NE"||s.pavarde=="NE") break;
+        auto [vardas, pavarde] = vardo_pavardes_ivedimas(S, ilgiausias_vardas, ilgiausia_pavarde);
+        if(vardas=="NE"||pavarde=="NE") break;
 
         //--------------------------------------------------------------------------------------------------------------------------
         //Ivedinejame pazymius
@@ -43,30 +50,32 @@ void ivedimas_ranka(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiau
         while (true) {
             int pazimys = gauti_skaiciu("", 1, 10, true);
             if (pazimys == -1) break;
-            s.n.push_back(pazimys);
+            n.push_back(pazimys);
         }
-        s.egzas = gauti_skaiciu("Iveskite studento egzamino pazymi:");
-        S.push_back(s);     //viena studenta itrauke i studentus;
+        egzas = gauti_skaiciu("Iveskite studento egzamino pazymi:");
+        S.push_back(Studentas(vardas, pavarde, egzas, n));     //viena studenta itrauke i studentus;
     }
 }
 
 void generuojami_pazymiai(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiausia_pavarde)
 {
     while(true){
-        Studentas s;     //vienas studentas kuri siuo metu ivedame apsirasom;
+        
+        vector<int> n; // Namu darbu pazymiai
+        int egzas; // Egzamino pazymys
         //---------------------------------------------------------------------------------------------------------------------------
         //Ivedinejame studentu vardus ir pavardes tol kol ivedamas NE.
 
-        vardo_pavardes_ivedimas(S, s, ilgiausias_vardas, ilgiausia_pavarde);
-        if(s.vardas=="NE"||s.pavarde=="NE") break;
+        auto [vardas, pavarde] = vardo_pavardes_ivedimas(S, ilgiausias_vardas, ilgiausia_pavarde);
+        if(vardas=="NE"||pavarde=="NE") break;
 
         //--------------------------------------------------------------------------------------------------------------------------
         //Sugeneruojame pazymius;
         int pazymiu_kiekis=gauti_skaiciu("Iveskite kiek pazymiu norite sugeneruoti.", 0, numeric_limits<int>::max());
         for(int i=0; i<pazymiu_kiekis;i++){
-            s.n.push_back(atsitiktinis_skaicius(1,10));
+            n.push_back(atsitiktinis_skaicius(1,10));
         }
-        s.egzas = atsitiktinis_skaicius(1,10);
+        egzas = atsitiktinis_skaicius(1,10);
         S.push_back(s);     //viena studenta itrauke i studentus;
     }
 }

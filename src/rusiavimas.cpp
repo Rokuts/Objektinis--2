@@ -8,10 +8,10 @@ bool compareByMediana(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
     return a.mediana > b.mediana;
 }
 bool compareByVardas(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
-    return a.studentas.vardas < b.studentas.vardas;
+    return a.studentas.getVardas() < b.studentas.getVardas();
 }
 bool compareByPavarde(apskaiciuotas_studentas &a, apskaiciuotas_studentas &b) {
-    return a.studentas.pavarde < b.studentas.pavarde;
+    return a.studentas.getPavarde() < b.studentas.getPavarde();
 }
 
 void kaip_rusiuojam_ir_rusiuojam(Container(apskaiciuotas_studentas) &S){
