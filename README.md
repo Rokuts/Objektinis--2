@@ -279,6 +279,9 @@ Ištirti programos našumo skirtumus, kai vietoj struktūrų (struct) naudojamos
 |                   | O2    | 6.11433    | 136192           | 7.74538   | 147968          |
 |                   | O3    | 5.63477    | 145408           | 6.4951    | 165376          |
 
+**Išvada:**
+
+Eksperimentas parodė, kad class ir struct versijų veikimo laikas skiriasi nežymiai, o optimizavimo flag'ai (-O1, -O2, -O3) turi didesnę įtaką našumui nei pati objekto rūšis. Class realizacija generuoja šiek tiek didesnį vykdomąjį failą, tačiau dažnai veikia greičiau su mažesniu duomenų kiekiu. Todėl optimizacija svarbesnė už struct/class pasirinkimą, jei klasė efektyviai sukurta.
 
 ### Autorius 
 Rokas Venckus
