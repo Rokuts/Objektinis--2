@@ -261,5 +261,13 @@ Antrojoje strategijoje, kurioje "vargšiukai" buvo perkeliami į naują konteine
 
 Atlikus studentų skirstymo našumo tyrimą su Vector konteineriu, paaiškėjo, kad strategija 1 (naudojant for ciklas) ir optimizuota strategija 1 (naudojant std::partition_point) veikė panašiu greičiu. Pagrindinė to priežastis – abiejose strategijose buvo operuojama su nuorodomis (arba rodyklėmis) į studentų objektus, o ne su jų kopijomis.
 
+**5 tyrimas. Struktūros ir klasės palyginimas: našumo analizė su skirtingais optimizavimo lygiais**
+-
+
+**Tikslas:**
+
+Ištirti programos našumo skirtumus, kai vietoj struktūrų (struct) naudojamos klasės (class), bei įvertinti kompiliatoriaus optimizavimo lygių (-O1, -O2, -O3) poveikį programos spartai dirbant su dideliais duomenų failais (100 000 ir 1 000 000 įrašų), naudojant vektoriaus (std::vector) konteinerį ir optimalią rūšiavimo/dalijimo strategiją.
+
+
 ### Autorius 
 Rokas Venckus
