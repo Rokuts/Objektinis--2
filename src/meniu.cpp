@@ -13,4 +13,5 @@ void meniu()
     cout << "8. Suskirstyti studentus i vargsiukus, kietiakus ir isvesti juos i du skirtingus failus" <<endl;
     cout << "9. Laiko tyrimas" << endl;
     cout << "10. Tyrimas su strategijom" << endl;
+    cout << "11. Klases testavimas" << endl;
 }
