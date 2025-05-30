@@ -2,6 +2,7 @@
 
 #include "headers.h"
 
+
 class Studentas {
 private:
 
@@ -22,6 +23,16 @@ public:
     Studentas(const std::string& vardas, const std::string& pavarde, int egzas, const std::vector<int>& n) 
         : vardas_(vardas), pavarde_(pavarde), egzas_(egzas), n_(n) {}
 
+    // Copy constructor
+    Studentas(const Studentas& other)
+        : vardas_("klaida"), pavarde_(other.pavarde_), egzas_(other.egzas_), n_(other.n_) {}
+    
+    // Move constructor
+    Studentas(Studentas&& other) noexcept
+        : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
+          egzas_(other.egzas_), n_(std::move(other.n_)) {}
+
+
     inline string getVardas() const {
         return vardas_;
     }
@@ -35,13 +46,16 @@ public:
         return n_;
     }
 
+    // Įvesties/išvesties operatoriai
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
+    friend std::istream& operator>>(std::istream& is, Studentas& s);
+
 
     double vidurkis() const;
     double mediana() const;
 
     // Rule of Five
-    Studentas(const Studentas& other) = default;                // Copy constructor
-    Studentas(Studentas&& other) noexcept = default;            // Move constructor
+   
     Studentas& operator=(const Studentas& other) = default;     // Copy assignment
     Studentas& operator=(Studentas&& other) noexcept = default; // Move assignment
 

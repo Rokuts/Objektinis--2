@@ -11,6 +11,7 @@
 #include <sstream>
 #include <random>
 #include <chrono>
+#include <cassert>
 
 using std::string;
 using std::sort;
