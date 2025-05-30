@@ -16,7 +16,7 @@ int main(){
     while(true){
         meniu();
         int pasirinkimas;
-        pasirinkimas = gauti_skaiciu("Iveskite norima varianta.", 1, 10);
+        pasirinkimas = gauti_skaiciu("Iveskite norima varianta.", 1, 11);
         switch(pasirinkimas){
             case 1:
                 ivedimas_ranka(S, ilgiausias_vardas, ilgiausia_pavarde);
@@ -48,6 +48,49 @@ int main(){
             case 10:
                 tyrimas_su_strategijom();
                 break;
+            case 11:
+                // Originalus objektas
+                Studentas s1("Jonas", "Jonaitis", 9, {10, 9, 8});
+
+                // Copy constructor
+                Studentas s2(s1);
+                assert(s2.getVardas() == "Jonas");
+                assert(s2.getPavarde() == "Jonaitis");
+                assert(s2.getEgzas() == 9);
+                assert(s2.getNamuDarbai() == std::vector<int>({10, 9, 8}));
+
+                // Move constructor
+                Studentas s3 = std::move(s2);
+                assert(s3.getVardas() == "Jonas");
+
+                // Copy assignment
+                Studentas s4("Petras", "Petraitis", 7, {7, 7, 7});
+                s4 = s1;
+                assert(s4.getVardas() == "Jonas");
+
+                // Move assignment
+                Studentas s5("Ona", "Onaitė", 6, {6, 6, 6});
+                s5 = std::move(s4);
+                assert(s5.getVardas() == "Jonas");
+
+                // Patikriname operator<<
+                std::stringstream ss;
+                ss << s1;
+                std::string out = ss.str();
+                assert(out.find("Jonas") != std::string::npos);
+                assert(out.find("Jonaitis") != std::string::npos);
+
+                // Patikriname operator>>
+                std::stringstream ss2("Vardenis Pavardenis 10 8 7 6");
+                Studentas s6(ss2);
+                // arba: ss2 >> s6;
+                assert(s6.getVardas() == "Vardenis");
+                assert(s6.getPavarde() == "Pavardenis");
+                assert(s6.getEgzas() == 10);
+                assert(s6.getNamuDarbai() == std::vector<int>({8, 7, 6}));
+
+                std::cout << "Rule of Five testas pavyko!" << std::endl;
+                return 0;
         }
 
     }
