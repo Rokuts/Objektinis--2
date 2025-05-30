@@ -76,7 +76,7 @@ void generuojami_pazymiai(Container(Studentas) &S, int &ilgiausias_vardas, int &
             n.push_back(atsitiktinis_skaicius(1,10));
         }
         egzas = atsitiktinis_skaicius(1,10);
-        S.push_back(s);     //viena studenta itrauke i studentus;
+        S.push_back(Studentas(vardas, pavarde, egzas, n));     //viena studenta itrauke i studentus;
     }
 }
 
@@ -85,24 +85,28 @@ void generuojama_viskas(Container(Studentas) &S, int &ilgiausias_vardas, int &il
     int studentu_kiekis=gauti_skaiciu("Iveskite kiek studentu norite sugeneruoti.", 0, numeric_limits<int>::max());
     int pazymiu_kiekis=gauti_skaiciu("Iveskite kiek pazymiu norite sugeneruoti.", 0, numeric_limits<int>::max());
     for(int i=0;i<studentu_kiekis;i++){
-        Studentas s;     //vienas studentas kuri siuo metu ivedame apsirasom;
+
+        vector<int> n; // Namu darbu pazymiai
+        string vardas, pavarde; // Vardas ir pavarde
+        int egzas; // Egzamino pazymys
+        
         //---------------------------------------------------------------------------------------------------------------------------
         //Sugeneruojami vardai ir pavardes;
         
-        s.vardas=atsitiktine_zodis(vardai);
-        s.pavarde=atsitiktine_zodis(pavardes);
+        vardas=atsitiktine_zodis(vardai);
+        pavarde=atsitiktine_zodis(pavardes);
 
-        ilgiausias_vardas = max(ilgiausias_vardas, (int)s.vardas.size());  // Vardo ilgis
-        ilgiausia_pavarde = max(ilgiausia_pavarde, (int)s.pavarde.size()); // Pavardes ilgis
+        ilgiausias_vardas = max(ilgiausias_vardas, (int)vardas.size());  // Vardo ilgis
+        ilgiausia_pavarde = max(ilgiausia_pavarde, (int)pavarde.size()); // Pavardes ilgis
 
         //--------------------------------------------------------------------------------------------------------------------------
         //Sugeneruojame pazymius;
         for(int i=0; i<pazymiu_kiekis;i++){
-            s.n.push_back(atsitiktinis_skaicius(1,10));
+            n.push_back(atsitiktinis_skaicius(1,10));
         }
         //Sugeneruojam egzo pazymi;
-        s.egzas = atsitiktinis_skaicius(1,10);
-        S.push_back(s);     //viena studenta itrauke i studentus;
+        egzas = atsitiktinis_skaicius(1,10);
+        S.push_back(Studentas(vardas, pavarde, egzas, n));     //viena studenta itrauke i studentus;
     }
 }
 
@@ -139,8 +143,8 @@ void skaitymas_is_failo_logika(Container(Studentas) &S, int &ilgiausias_vardas, 
             Studentas naujas(iss);
 
             // Track longest name lengths
-            ilgiausias_vardas = max(ilgiausias_vardas, (int)naujas.vardas.length());
-            ilgiausia_pavarde = max(ilgiausia_pavarde, (int)naujas.pavarde.length());
+            ilgiausias_vardas = max(ilgiausias_vardas, (int)naujas.getVardas().length());
+            ilgiausia_pavarde = max(ilgiausia_pavarde, (int)naujas.getPavarde().length());
 
             // Add student to the list
             S.push_back(naujas);
