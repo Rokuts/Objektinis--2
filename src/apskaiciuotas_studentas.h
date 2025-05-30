@@ -4,11 +4,11 @@
 #include "studentas.h"
 
 struct apskaiciuotas_studentas{
-    studentas studentas;
+    Studentas studentas;
     double vidurkis;
     double mediana;
 };
 
-apskaiciuotas_studentas apskaiciuoti_stud(studentas stud);
+apskaiciuotas_studentas apskaiciuoti_stud(Studentas stud);
 
 

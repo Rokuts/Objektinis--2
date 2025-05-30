@@ -127,7 +127,7 @@ void laiko_tyrimas()
     path kietiaku_failas = ivesti_failo_pavadinima("Iveskite failo pavadinima kietiakams:", false);
     int pasirinkimas = gauti_skaiciu("Studentus skirstyti pagal vidurki ar mediana? (0 - vidurki, 1 - mediana)", 0, 1);
     
-    Container(studentas) S; // visi studentai
+    Container(Studentas) S; // visi studentai
     int ilgiausias_vardas = 0, ilgiausia_pavarde = 0;       
     
     auto pradzia = high_resolution_clock::now();
@@ -192,7 +192,7 @@ void tyrimas_su_strategijom()
         int strategijos_pasirinkimas = gauti_skaiciu("Taikyti pirma strategija (copy), antra strategija (move/erase)? (1 - pirma s., 2 - antra s.)", 1, 2);
     #endif
 
-    Container(studentas) S; // visi studentai
+    Container(Studentas) S; // visi studentai
     int ilgiausias_vardas = 0, ilgiausia_pavarde = 0;
 
     auto pradzia = high_resolution_clock::now();

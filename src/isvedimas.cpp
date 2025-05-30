@@ -34,7 +34,7 @@ void lentele(int ilgiausia_pavarde, int ilgiausias_vardas, Container(const apska
     lentele_universali(ilgiausia_pavarde, ilgiausias_vardas, S, isvestis, [](const auto& stud) { return *stud; }, ar_rodyti_vidurki);
 }
 
-void isvedimas_i_ekrana(int ilgiausia_pavarde, int ilgiausias_vardas, Container(studentas) &S){
+void isvedimas_i_ekrana(int ilgiausia_pavarde, int ilgiausias_vardas, Container(Studentas) &S){
     Container(apskaiciuotas_studentas) A_S;
     Container_reserve(A_S, S.size());
     for(const auto &s: S){
@@ -44,7 +44,7 @@ void isvedimas_i_ekrana(int ilgiausia_pavarde, int ilgiausias_vardas, Container(
     lentele(ilgiausia_pavarde, ilgiausias_vardas, A_S, cout, paklausiam_ar_rodyti_vidurki());
 }
 
-void isvedimas_i_faila(int ilgiausia_pavarde, int ilgiausias_vardas, Container(studentas) &S){
+void isvedimas_i_faila(int ilgiausia_pavarde, int ilgiausias_vardas, Container(Studentas) &S){
     
     path failas;        //deklaruojame kintamaji;
     failas = ivesti_failo_pavadinima("Iveskite failo pavadinima:", false); //ivesti failo pavadinima;
@@ -61,7 +61,7 @@ void isvedimas_i_faila(int ilgiausia_pavarde, int ilgiausias_vardas, Container(s
 
 }
 
-void skaidymas_ir_isvedimas_i_du_failus(Container(studentas) &S, int ilgiausia_pavarde, int ilgiausias_vardas)
+void skaidymas_ir_isvedimas_i_du_failus(Container(Studentas) &S, int ilgiausia_pavarde, int ilgiausias_vardas)
 {
     path failas1 = ivesti_failo_pavadinima("Iveskite failo pavadinima vargsiukams:", false);
     path failas2 = ivesti_failo_pavadinima("Iveskite failo pavadinima kietiakams:", false);
@@ -72,7 +72,7 @@ void skaidymas_ir_isvedimas_i_du_failus(Container(studentas) &S, int ilgiausia_p
     skaidymas_ir_isvedimas_i_du_failus_logika(S, ilgiausia_pavarde, ilgiausias_vardas, pasirinkimas, failas1, failas2);
 }
 
-void skaidymas_ir_isvedimas_i_du_failus_logika(Container(studentas) &S, int ilgiausia_pavarde, int ilgiausias_vardas, int pasirinkimas, path &failas1, path &failas2)
+void skaidymas_ir_isvedimas_i_du_failus_logika(Container(Studentas) &S, int ilgiausia_pavarde, int ilgiausias_vardas, int pasirinkimas, path &failas1, path &failas2)
 {
     Container(apskaiciuotas_studentas) A_S;
     Container_reserve(A_S, S.size());
