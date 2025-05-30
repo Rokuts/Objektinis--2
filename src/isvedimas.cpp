@@ -18,9 +18,9 @@ void lentele_universali(int ilgiausia_pavarde, int ilgiausias_vardas, const Cont
     for (const auto& studentas : S) {
         const auto& stud = get_ref(studentas);
         if (ar_rodyti_vidurki)
-            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.studentas.pavarde << setw(ilgiausias_vardas + 3) << stud.studentas.vardas << setw(17) << fixed << setprecision(2) << stud.vidurkis << endl;
+            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.studentas.getPavarde() << setw(ilgiausias_vardas + 3) << stud.studentas.getVardas() << setw(17) << fixed << setprecision(2) << stud.vidurkis << endl;
         else
-            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.studentas.pavarde << setw(ilgiausias_vardas + 3) << stud.studentas.vardas << setw(17) << fixed << setprecision(2) << stud.mediana << endl;
+            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.studentas.getPavarde() << setw(ilgiausias_vardas + 3) << stud.studentas.getVardas() << setw(17) << fixed << setprecision(2) << stud.mediana << endl;
     }
 }
 
