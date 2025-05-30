@@ -39,6 +39,12 @@ public:
     double vidurkis() const;
     double mediana() const;
 
+    // Rule of Five
+    Studentas(const Studentas& other) = default;                // Copy constructor
+    Studentas(Studentas&& other) noexcept = default;            // Move constructor
+    Studentas& operator=(const Studentas& other) = default;     // Copy assignment
+    Studentas& operator=(Studentas&& other) noexcept = default; // Move assignment
+
     ~Studentas() {
         // Pilnai realizuotas destruktorius. Kadangi klasė nenaudoja dinaminės atminties,
         // čia nereikia nieko papildomai atlaisvinti. Visi nariai sunaikinami automatiškai.
