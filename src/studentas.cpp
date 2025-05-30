@@ -42,3 +42,30 @@ double Studentas::mediana() const
     else mediana = (temp[x/2]);
     return mediana * 0.4 + (egzas_ * 0.6);
 }
+
+std::ostream &operator<<(std::ostream &os, const Studentas &s)
+{
+    os << s.vardas_ << " " << s.pavarde_ << " ";
+    for (const auto &paz : s.n_) {
+        os << paz << " ";
+    }
+    os << s.egzas_;
+    return os;
+}
+
+std::istream &operator>>(std::istream &is, Studentas &s)
+{
+    if (!(is >> s.vardas_ >> s.pavarde_)) {
+        throw std::runtime_error("Klaida nuskaitant studento duomenis.");
+    }
+    s.n_.clear();
+    int paz;
+    while (is >> paz) {
+        s.n_.push_back(paz);
+    }
+    if (!s.n_.empty()) {
+        s.egzas_ = s.n_.back(); // Paskutinis skaicius yra egzamino pazymys
+        s.n_.pop_back();
+    } 
+    return is;
+}
