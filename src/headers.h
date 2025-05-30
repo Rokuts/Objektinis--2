@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <algorithm>
+//#include <algorithm>
 #include <iomanip>
 #include <vector>
 #include <cctype> // darbas su simboliais

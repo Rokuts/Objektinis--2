@@ -34,9 +34,11 @@ double Studentas::mediana() const
     
     double mediana;
     int x=n_.size();
-    sort(n_.begin(),n_.end());
+
+    vector<int> temp(n_);
+    sort(temp.begin(),temp.end());
     if(x%2==0)
-        mediana = (n_[x/2]+n_[x/2-1])/2;
-    else mediana = (n_[x/2]);
+        mediana = (temp[x/2]+temp[x/2-1])/2.0;
+    else mediana = (temp[x/2]);
     return mediana * 0.4 + (egzas_ * 0.6);
 }

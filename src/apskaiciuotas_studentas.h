@@ -12,15 +12,15 @@ private:
 public:
     //Konstruktorius
     ApskaiciuotasStudentas(const Studentas& stud)
-        : studentas(stud), vidurkis(stud.vidurkis()), mediana(stud.mediana()) {}
+        : studentas_(stud), vidurkis_(stud.vidurkis()), mediana_(stud.mediana()) {}
 
-    inline Studentas getStudentas() const { return studentas; }
-    inline double getVidurkis() const { return vidurkis; }
-    inline double getMediana() const { return mediana; }
+    inline Studentas getStudentas() const { return studentas_; }
+    inline double getVidurkis() const { return vidurkis_; }
+    inline double getMediana() const { return mediana_; }
 
-    inline string getVardas() const { return studentas.getVardas(); }
-    inline string getPavarde() const { return studentas.getPavarde(); }
-    inline int getEgzas() const { return studentas.getEgzas(); }
+    inline string getVardas() const { return studentas_.getVardas(); }
+    inline string getPavarde() const { return studentas_.getPavarde(); }
+    inline int getEgzas() const { return studentas_.getEgzas(); }
 };
 
 

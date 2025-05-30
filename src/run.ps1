@@ -1,5 +1,5 @@
 # Change directory to the script location
-Set-Location -Path "C:\Users\Roko PC\Desktop\Objektinis"
+
 
 # Compile the program using Clang++
 Write-Host " Compiling main.cpp..." -ForegroundColor Cyan

@@ -18,27 +18,27 @@ void lentele_universali(int ilgiausia_pavarde, int ilgiausias_vardas, const Cont
     for (const auto& studentas : S) {
         const auto& stud = get_ref(studentas);
         if (ar_rodyti_vidurki)
-            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.studentas.getPavarde() << setw(ilgiausias_vardas + 3) << stud.studentas.getVardas() << setw(17) << fixed << setprecision(2) << stud.vidurkis << endl;
+            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.getPavarde() << setw(ilgiausias_vardas + 3) << stud.getVardas() << setw(17) << fixed << setprecision(2) << stud.getVidurkis() << endl;
         else
-            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.studentas.getPavarde() << setw(ilgiausias_vardas + 3) << stud.studentas.getVardas() << setw(17) << fixed << setprecision(2) << stud.mediana << endl;
+            isvestis << left << setw(ilgiausia_pavarde + 3) << stud.getPavarde() << setw(ilgiausias_vardas + 3) << stud.getVardas() << setw(17) << fixed << setprecision(2) << stud.getMediana() << endl;
     }
 }
 
-void lentele(int ilgiausia_pavarde, int ilgiausias_vardas, Container(apskaiciuotas_studentas) &S, ostream &isvestis, bool ar_rodyti_vidurki)       //lentele kopijoms;
+void lentele(int ilgiausia_pavarde, int ilgiausias_vardas, Container(ApskaiciuotasStudentas) &S, ostream &isvestis, bool ar_rodyti_vidurki)       //lentele kopijoms;
 {
     lentele_universali(ilgiausia_pavarde, ilgiausias_vardas, S, isvestis, [](const auto& stud) { return stud; }, ar_rodyti_vidurki);
 }
 
-void lentele(int ilgiausia_pavarde, int ilgiausias_vardas, Container(const apskaiciuotas_studentas*) &S, ostream &isvestis, bool ar_rodyti_vidurki)    //lentele rodyklėms;
+void lentele(int ilgiausia_pavarde, int ilgiausias_vardas, Container(const ApskaiciuotasStudentas*) &S, ostream &isvestis, bool ar_rodyti_vidurki)    //lentele rodyklėms;
 {
     lentele_universali(ilgiausia_pavarde, ilgiausias_vardas, S, isvestis, [](const auto& stud) { return *stud; }, ar_rodyti_vidurki);
 }
 
 void isvedimas_i_ekrana(int ilgiausia_pavarde, int ilgiausias_vardas, Container(Studentas) &S){
-    Container(apskaiciuotas_studentas) A_S;
+    Container(ApskaiciuotasStudentas) A_S;
     Container_reserve(A_S, S.size());
     for(const auto &s: S){
-        A_S.push_back(apskaiciuoti_stud(s));
+        A_S.push_back(ApskaiciuotasStudentas(s));
     }
     kaip_rusiuojam_ir_rusiuojam(A_S);
     lentele(ilgiausia_pavarde, ilgiausias_vardas, A_S, cout, paklausiam_ar_rodyti_vidurki());
@@ -50,10 +50,10 @@ void isvedimas_i_faila(int ilgiausia_pavarde, int ilgiausias_vardas, Container(S
     failas = ivesti_failo_pavadinima("Iveskite failo pavadinima:", false); //ivesti failo pavadinima;
     
     ofstream isvestis(failas);
-    Container(apskaiciuotas_studentas) A_S;
+    Container(ApskaiciuotasStudentas) A_S;
     Container_reserve(A_S, S.size());
     for(const auto &s: S){      //pereina per visus studentus s esancius studentu sarase S;
-        A_S.push_back(apskaiciuoti_stud(s));
+        A_S.push_back(ApskaiciuotasStudentas(s));
     }
     kaip_rusiuojam_ir_rusiuojam(A_S);
     lentele(ilgiausia_pavarde,ilgiausias_vardas,A_S,isvestis, paklausiam_ar_rodyti_vidurki());
@@ -74,15 +74,15 @@ void skaidymas_ir_isvedimas_i_du_failus(Container(Studentas) &S, int ilgiausia_p
 
 void skaidymas_ir_isvedimas_i_du_failus_logika(Container(Studentas) &S, int ilgiausia_pavarde, int ilgiausias_vardas, int pasirinkimas, path &failas1, path &failas2)
 {
-    Container(apskaiciuotas_studentas) A_S;
+    Container(ApskaiciuotasStudentas) A_S;
     Container_reserve(A_S, S.size());
     for (const auto &s : S)
     {
-        A_S.push_back(apskaiciuoti_stud(s));
+        A_S.push_back(ApskaiciuotasStudentas(s));
     }
 
-    Container(const apskaiciuotas_studentas*) vargsiukai;
-    Container(const apskaiciuotas_studentas*) kietiakai;
+    Container(const ApskaiciuotasStudentas*) vargsiukai;
+    Container(const ApskaiciuotasStudentas*) kietiakai;
 
     skaidyti_studentus(A_S, vargsiukai, kietiakai, !pasirinkimas);
 
