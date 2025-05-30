@@ -268,6 +268,17 @@ Atlikus studentų skirstymo našumo tyrimą su Vector konteineriu, paaiškėjo, 
 
 Ištirti programos našumo skirtumus, kai vietoj struktūrų (struct) naudojamos klasės (class), bei įvertinti kompiliatoriaus optimizavimo lygių (-O1, -O2, -O3) poveikį programos spartai dirbant su dideliais duomenų failais (100 000 ir 1 000 000 įrašų), naudojant vektoriaus (std::vector) konteinerį ir optimalią rūšiavimo/dalijimo strategiją.
 
+**Gauti rezultatai:**
+
+| Studentų skaičius | Flags | Struct (s) | Struct dydis (B) | Class (s) | Class dydis (B) |
+|-------------------|-------|------------|------------------|-----------|-----------------|
+| 100000            | O1    | 0.693444   | 131584           | 0.54581   | 142848          |
+|                   | O2    | 0.580289   | 136192           | 0.658903  | 147968          |
+|                   | O3    | 0.576069   | 145408           | 0.814887  | 165376          |
+| 1000000           | O1    | 5.39164    | 131584           | 5.43563   | 142848          |
+|                   | O2    | 6.11433    | 136192           | 7.74538   | 147968          |
+|                   | O3    | 5.63477    | 145408           | 6.4951    | 165376          |
+
 
 ### Autorius 
 Rokas Venckus
