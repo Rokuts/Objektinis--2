@@ -11,7 +11,7 @@ private:
 
 public:
     
-    Studentas() = default; // Default constructor
+    Studentas() : Zmogus(), egzas_(0), n_() {} // Default constructor
 
     /**
      * Konstruktorius nuskaitantis viena studenta is srauto
