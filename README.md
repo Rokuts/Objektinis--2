@@ -433,6 +433,17 @@ v.push_back(20);
 // vektorius: [10, 20]
 ```
 
+#### 2. `pop_back()`
+Pašalina paskutinį vektoriaus elementą. 
+```cpp
+Vektorius<int> v;
+v.push_back(10);
+v.push_back(20);
+v.pop_back(); // Paskutinis elementas pašalinamas, vektorius tampa [10]
+```
+
+
+
 
 
 ### Autorius 
