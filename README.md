@@ -480,6 +480,23 @@ Vektorius<int> v2;
 v2 = v1; // v2 tampa v1 kopija
 ```
 
+### 6 tyrimas. Greitaveiklos palyginimas: Vektorius vs std::vector
+
+**Tikslas:**  
+Palyginti savos implementacijos `Vektorius` klasės ir standartinės C++ `std::vector` konteinerio veikimo greitį atliekant masinį elementų įterpimą.
+
+**Gauti rezultatai:**
+
+| Iteracijų skaičius | Vektorius (s) | std::vector (s) |
+|--------------------|---------------|-----------------|
+| 10 000             | 0.0001303     | 0.0003138       |
+| 100 000            | 0.0007941     | 0.0029056       |
+| 1 000 000          | 0.0064483     | 0.0380851       |
+| 10 000 000         | 0.134262      | 0.319293        |
+| 100 000 000        | 1.20785       | 4.0814          |
+
+**Išvada:**  
+Pagal atliktus matavimus, savos implementacijos `Vektorius` klasė veikia žymiai greičiau nei standartinis `std::vector` tiek su mažais, tiek su labai dideliais duomenų kiekiais. Tai gali būti dėl supaprastinto funkcionalumo ar optimizuoto atminties valdymo.
 
 
 ### Autorius 
