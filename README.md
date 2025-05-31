@@ -422,5 +422,18 @@ Toks objektinis dizainas leidžia lengvai plėsti programą – ateityje galima 
 
 ---
 
+## v3.0 vektoriaus konteineris
+
+#### 1. `push_back(const T& value)`
+Prideda naują elementą į vektoriaus galą. Jei reikia, automatiškai padidina talpą.
+```cpp
+Vektorius<int> v;
+v.push_back(10);
+v.push_back(20);
+// vektorius: [10, 20]
+```
+
+
+
 ### Autorius 
 Rokas Venckus
