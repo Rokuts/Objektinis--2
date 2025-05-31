@@ -49,6 +49,12 @@ Prieš pasirenkant 8 punktą, įsitikinkite, kad turite jau įvestų arba nuskai
 - **v0.3:** Įtrauktas išimčių valdymas programos saugumui ir stabilumui užtikrinti.
 - **v0.4:** Pridėtas studentų skirstymas pagal galutinį balą ir atliktas pirmas ir antras tyrimas.
 - **v1.0:** programos greičio testavimas su trimis skirtingais konteineriais (vector, list, deque). Įgyvendintos 2 duomenų skirstymo strategijos ir viena jų optimizuota.
+- **v1.1:** Pridėtas tyrimas su struktūromis ir klasėmis, palyginant jų našumą su skirtingais optimizavimo lygiais.
+- **v1.2:** Pritaikyta Rule of Five.
+- **v1.5:** Sukurta abstrakti klase Zmogus.
+- **v2.0:** Itrauktas Google test.
+- **v3.0:** Sukurtas Vektorius.
+
 
 **Testavimai atlikti kompiuteryje su šia konfigūracija:**
 -
