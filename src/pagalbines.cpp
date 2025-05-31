@@ -284,4 +284,13 @@ void test_klases()
     
     cout << "Rule of Five testas pavyko!" << std::endl;
 
+    //Demonstracija kad zmogaus klases objekto negalime sukurti, nes ji yra abstrakti klase;
+    /*try {
+        Zmogus z("Vardenis", "Pavardenis");
+        cout << "Zmogaus klases objektas sukurtas, nors turejo buti klaida!" << endl;
+    } catch (const std::exception& e) {
+        cout << "Klaida: " << e.what() << endl; // Cia turetu buti klaida, nes Zmogus yra abstrakti klase
+    }*/
+
 }
+
