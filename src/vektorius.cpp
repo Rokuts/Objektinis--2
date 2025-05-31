@@ -131,13 +131,17 @@ size_t Vektorius<T>::capacity() const
 template <typename T>
 bool Vektorius<T>::empty() const
 {
-    size_ = 0;
+    return size_ == 0;
 }
 
 template <typename T>
 void Vektorius<T>::clear()
 {
-    return data_;
+    delete[] data_;
+    data_ = nullptr;
+    size_ = 0;
+    capacity_ = 0;
+
 }
 
 template <typename T>
