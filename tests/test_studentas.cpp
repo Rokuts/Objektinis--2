@@ -16,6 +16,8 @@ TEST(StudentasTest, DefaultConstructor) {
 TEST(StudentasTest, ParameterizedConstructor) {
     std::vector<int> nd = {8, 9, 10};
     Studentas s("Jonas", "Jonaitis", 7, nd);
+    EXPECT_EQ(s.getVardas(), "Jonas");
+    EXPECT_EQ(s.getPavarde(), "Jonaitis");
     EXPECT_EQ(s.getEgzas(), 7);
     EXPECT_EQ(s.getNamuDarbai(), nd);
 }
@@ -24,6 +26,8 @@ TEST(StudentasTest, CopyConstructor) {
     std::vector<int> nd = {5, 6};
     Studentas s1("A", "B", 9, nd);
     Studentas s2(s1);
+    EXPECT_EQ(s2.getVardas(), "A");
+    EXPECT_EQ(s2.getPavarde(), "B");
     EXPECT_EQ(s2.getEgzas(), 9);
     EXPECT_EQ(s2.getNamuDarbai(), nd);
 }
