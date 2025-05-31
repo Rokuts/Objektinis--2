@@ -18,7 +18,6 @@ public:
     Vektorius& operator=(const Vektorius& other);
     Vektorius& operator=(Vektorius&& other) noexcept;
     ~Vektorius();
-    
 
     void push_back(const T& value);
     void pop_back();
@@ -30,12 +29,14 @@ public:
     size_t capacity() const;
     bool empty() const;
     void clear();
+    void reserve(size_t new_capacity) {ensure_capacity(new_capacity);}
+    T* erase(T* pos);
+    T* erase(T* first, T* last);
 
     T* begin();
     T* end();
     const T* begin() const;
     const T* end() const;
-    // ...pridėkite daugiau funkcijų pagal poreikį...
 };
 
 // Implementacijos
@@ -208,3 +209,26 @@ const T *Vektorius<T>::end() const
     return data_ + size_;
 }
 
+template <typename T>
+T* Vektorius<T>::erase(T* pos) {
+    if (pos < data_ || pos >= data_ + size_) throw std::out_of_range("Iterator out of range");
+    size_t idx = pos - data_;
+    for (size_t i = idx; i + 1 < size_; ++i) {
+        data_[i] = data_[i + 1];
+    }
+    --size_;
+    return data_ + idx;
+}
+
+template <typename T>
+T* Vektorius<T>::erase(T* first, T* last) {
+    if (first < data_ || last > data_ + size_ || first > last) throw std::out_of_range("Iterator range invalid");
+    size_t idx_first = first - data_;
+    size_t idx_last = last - data_;
+    size_t count = idx_last - idx_first;
+    for (size_t i = idx_first; i + count < size_; ++i) {
+        data_[i] = data_[i + count];
+    }
+    size_ -= count;
+    return data_ + idx_first;
+}

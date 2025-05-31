@@ -51,7 +51,8 @@ using std::ofstream;
 
 void meniu();
 
- #define USE_VECTOR
+// #define USE_VECTOR
+ #define USE_CUSTOM_VECTOR
 // #define USE_LIST
 // #define USE_DEQUE
 
@@ -61,6 +62,12 @@ void meniu();
     #define Container_reserve(cont, size) cont.reserve(size)
     #define Container_sort(cont, comp) std::sort(cont.begin(), cont.end(), comp)
     #define CONTAINER_NAME "Naudoji vector"
+#elif defined(USE_CUSTOM_VECTOR)
+    #include "vektorius.h"
+    #define Container(tipas) Vektorius<tipas>
+    #define Container_reserve(cont, size) cont.reserve(size)
+    #define Container_sort(cont, comp) std::sort(cont.begin(), cont.end(), comp) 
+    #define CONTAINER_NAME "Naudoji Vektorius"
 #elif defined(USE_LIST)
     #include <list>
     #define Container(tipas) std::list<tipas>

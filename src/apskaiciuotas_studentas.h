@@ -10,6 +10,7 @@ private:
 
 public:
     //Konstruktorius
+    ApskaiciuotasStudentas() : Studentas(), vidurkis_(0.0), mediana_(0.0) {}
     ApskaiciuotasStudentas(const Studentas& stud)
         : Studentas(stud), vidurkis_(stud.vidurkis()), mediana_(stud.mediana()) {}
 
