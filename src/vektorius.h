@@ -5,9 +5,11 @@
 
 template <typename T>
 class Vektorius {
+private:
     T* data_;
     size_t size_;
     size_t capacity_;
+    void ensure_capacity(size_t min_capacity);
 public:
     Vektorius();
     Vektorius(size_t n, const T& value = T());
@@ -16,6 +18,7 @@ public:
     Vektorius& operator=(const Vektorius& other);
     Vektorius& operator=(Vektorius&& other) noexcept;
     ~Vektorius();
+    
 
     void push_back(const T& value);
     void pop_back();

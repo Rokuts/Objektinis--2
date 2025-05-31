@@ -1,8 +1,25 @@
 #include "vektorius.h"
 
 template <typename T>
+void Vektorius<T>::ensure_capacity(size_t min_capacity)
+{   
+    if (capacity_ >= min_capacity) return;
+    size_t new_capacity = capacity_ == 0 ? 1 : capacity_ * 2;
+    while (new_capacity < min_capacity) {
+        new_capacity *= 2;
+    }
+    T* new_data = new T[new_capacity];
+    for (size_t i = 0; i < size_; ++i) {
+        new_data[i] = data_[i];
+    }
+    delete[] data_;
+    data_ = new_data;
+    capacity_ = new_capacity;
+}
+
+template <typename T>
 inline Vektorius<T>::Vektorius()
-    :data_(nullptr), size_(0), capacity_(0) {}
+    : data_(nullptr), size_(0), capacity_(0) {}
 
 template <typename T>
 Vektorius<T>::Vektorius(size_t n, const T &value)
@@ -55,11 +72,22 @@ Vektorius<T> &Vektorius<T>::operator=(Vektorius<T> &&other) noexcept
 template <typename T>
 Vektorius<T>::~Vektorius()
 {
+    delete[] data_;
 }
 
 template <typename T>
 void Vektorius<T>::push_back(const T &value)
 {
+    if (size_ == capacity_) {
+        size_t new_capacity = capacity_ ? capacity_ * 2 : 1;
+        T* new_data = new T[new_capacity];
+        for (size_t i = 0; i < size_; ++i)
+            new_data[i] = std::move(data_[i]);
+        delete[] data_;
+        data_ = new_data;
+        capacity_ = new_capacity;
+    }
+    data_[size_++] = value;
 }
 
 template <typename T>
