@@ -2,15 +2,7 @@
 
 Studentas::Studentas(std::istream &is)
 {
-    if(!(is >> vardas_ >> pavarde_)) {
-        throw std::runtime_error("Klaida nuskaitant studento duomenis.");
-    }
-    int paz;
-    while(is >> paz){
-        n_.push_back(paz);
-    }
-    egzas_ = n_.back();   // Paskutinis skaicius yra egzamino pazymys
-    n_.pop_back();  
+    is >> *this; // Panaudojame operator>> studento duomenims nuskaityti
 }
 
 double Studentas::vidurkis() const

@@ -273,7 +273,7 @@ void test_klases()
     assert(out.find("Jonaitis") != std::string::npos);
 
     // Patikriname operator>>
-    std::stringstream ss2("Vardenis Pavardenis 10 8 7 6");
+    std::stringstream ss2("Vardenis Pavardenis 8 7 6 10");
     Studentas s6(ss2);
     // arba: ss2 >> s6;
     assert(s6.getVardas() == "Vardenis");
