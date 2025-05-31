@@ -16,6 +16,7 @@ void generuoti_faila();
 bool paklausiam_ar_rodyti_vidurki();
 void laiko_tyrimas();
 void tyrimas_su_strategijom();
+void test_klases();
 
 
 static const vector<string> vardai = {

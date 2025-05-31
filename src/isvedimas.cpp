@@ -96,3 +96,9 @@ void skaidymas_ir_isvedimas_i_du_failus_logika(Container(Studentas) &S, int ilgi
     isvestis1.close();
     isvestis2.close();
 }
+void atspauzdinti_studentus(Container(Studentas) &S, ostream &isvestis)
+{
+    for (const auto &studentas : S) {
+        isvestis << studentas << endl;
+    }
+}

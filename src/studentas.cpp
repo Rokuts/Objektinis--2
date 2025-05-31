@@ -55,17 +55,21 @@ std::ostream &operator<<(std::ostream &os, const Studentas &s)
 
 std::istream &operator>>(std::istream &is, Studentas &s)
 {
+    
     if (!(is >> s.vardas_ >> s.pavarde_)) {
         throw std::runtime_error("Klaida nuskaitant studento duomenis.");
     }
     s.n_.clear();
     int paz;
+    vector<int> laikini;
     while (is >> paz) {
-        s.n_.push_back(paz);
+        laikini.push_back(paz);
     }
-    if (!s.n_.empty()) {
-        s.egzas_ = s.n_.back(); // Paskutinis skaicius yra egzamino pazymys
-        s.n_.pop_back();
+
+    if (!laikini.empty()) {
+        s.egzas_ = laikini.back(); // Paskutinis skaicius yra egzamino pazymys
+        laikini.pop_back();
+        s.n_ = laikini; // Likusieji yra namų darbų pažymiai
     } 
     return is;
 }

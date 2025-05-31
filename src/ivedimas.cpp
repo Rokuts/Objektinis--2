@@ -33,7 +33,7 @@ std::tuple<string, string> vardo_pavardes_ivedimas(Container(Studentas) &S, int 
 
 void ivedimas_ranka(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiausia_pavarde)
 {
-    
+
     while(true){
         
         vector<int> n; // Namu darbu pazymiai
@@ -54,8 +54,8 @@ void ivedimas_ranka(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiau
         }
         egzas = gauti_skaiciu("Iveskite studento egzamino pazymi:");
         S.push_back(Studentas(vardas, pavarde, egzas, n));     //viena studenta itrauke i studentus;
+        }
     }
-}
 
 void generuojami_pazymiai(Container(Studentas) &S, int &ilgiausias_vardas, int &ilgiausia_pavarde)
 {
@@ -138,9 +138,11 @@ void skaitymas_is_failo_logika(Container(Studentas) &S, int &ilgiausias_vardas, 
 
     while (getline(ivestis, eilute))
     {
+        if (eilute.empty()) continue; // praleidžiam tuščias eilutes
         stringstream iss(eilute);
         try {
-            Studentas naujas(iss);
+            Studentas naujas;
+            iss >> naujas;
 
             // Track longest name lengths
             ilgiausias_vardas = max(ilgiausias_vardas, (int)naujas.getVardas().length());

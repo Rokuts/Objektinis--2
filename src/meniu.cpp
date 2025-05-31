@@ -14,4 +14,5 @@ void meniu()
     cout << "9. Laiko tyrimas" << endl;
     cout << "10. Tyrimas su strategijom" << endl;
     cout << "11. Klases testavimas" << endl;
+    cout << "12. Atspausdinti studentus" << endl;
 }

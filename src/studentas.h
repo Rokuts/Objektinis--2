@@ -12,6 +12,8 @@ private:
 
 public:
     
+    Studentas() = default; // Default constructor
+
     /**
      * Konstruktorius nuskaitantis viena studenta is srauto
      */
@@ -25,7 +27,7 @@ public:
 
     // Copy constructor
     Studentas(const Studentas& other)
-        : vardas_("klaida"), pavarde_(other.pavarde_), egzas_(other.egzas_), n_(other.n_) {}
+        : vardas_(other.vardas_), pavarde_(other.pavarde_), egzas_(other.egzas_), n_(other.n_) {}
     
     // Move constructor
     Studentas(Studentas&& other) noexcept
@@ -55,9 +57,28 @@ public:
     double mediana() const;
 
     // Rule of Five
-   
-    Studentas& operator=(const Studentas& other) = default;     // Copy assignment
-    Studentas& operator=(Studentas&& other) noexcept = default; // Move assignment
+
+   // Copy assignment
+    Studentas& operator=(const Studentas& other) {
+        if (this != &other) {
+            vardas_ = other.vardas_;
+            pavarde_ = other.pavarde_;
+            egzas_ = other.egzas_;
+            n_ = other.n_;
+        }
+        return *this;
+    }     
+
+    // Move assignment
+    Studentas& operator=(Studentas&& other) noexcept {
+        if (this != &other) {
+            vardas_ = std::move(other.vardas_);
+            pavarde_ = std::move(other.pavarde_);
+            egzas_ = other.egzas_;
+            n_ = std::move(other.n_);
+        }
+        return *this; 
+    }
 
     ~Studentas() {
         // Pilnai realizuotas destruktorius. Kadangi klasė nenaudoja dinaminės atminties,
