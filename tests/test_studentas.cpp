@@ -7,6 +7,8 @@
 
 TEST(StudentasTest, DefaultConstructor) {
     Studentas s;
+    EXPECT_EQ(s.getVardas(), "");
+    EXPECT_EQ(s.getPavarde(), "");
     EXPECT_EQ(s.getEgzas(), 0);
     EXPECT_TRUE(s.getNamuDarbai().empty());
 }
