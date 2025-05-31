@@ -283,5 +283,98 @@ Ištirti programos našumo skirtumus, kai vietoj struktūrų (struct) naudojamos
 
 Eksperimentas parodė, kad class ir struct versijų veikimo laikas skiriasi nežymiai, o optimizavimo flag'ai (-O1, -O2, -O3) turi didesnę įtaką našumui nei pati objekto rūšis. Class realizacija generuoja šiek tiek didesnį vykdomąjį failą, tačiau dažnai veikia greičiau su mažesniu duomenų kiekiu. Todėl optimizacija svarbesnė už struct/class pasirinkimą, jei klasė efektyviai sukurta.
 
+**Duomenų įvedimo ir išvedimo metodai (perdengti operatoriai)**
+
+Šioje programoje duomenų įvedimas ir išvedimas realizuotas naudojant **perdengtus C++ operatorius** – tai leidžia patogiai ir universaliai dirbti tiek su rankiniu, tiek su automatiniu ar failiniu įvedimu/išvedimu.
+
+### Įvesties operatorius `operator>>`
+
+```cpp
+friend std::istream& operator>>(std::istream& is, Studentas& s);
+```
+
+**Panaudojimas:**
+- **Rankinis įvedimas:**  
+  Vartotojas gali įvesti studento duomenis viena eilute (pvz., `Jonas Jonaitis 8 9 10 7`). Programa naudoja `std::getline` ir `std::stringstream`, kad perduotų visą eilutę į šį operatorių.  
+  Taip pat veikia, jei kiekvienas laukas įvedamas atskirai (pvz., vardas, pavardė, pažymiai po vieną spaudžiant Enter), nes operatorius skaito po vieną žodį/skaičių iš srauto.
+
+- **Automatinis generavimas:**  
+  Sugeneruoti duomenys perduodami tiesiai į studento konstruktorių, todėl operatorius čia nenaudojamas, tačiau duomenų struktūra išlieka ta pati.
+
+- **Įvedimas iš failo:**  
+  Kiekviena failo eilutė (be antraštės) perduodama į `stringstream`, kuris perduodamas į `operator>>`. Taip užtikrinamas universalumas – nesvarbu, ar duomenys ateina iš failo, ar iš konsolės, jie apdorojami vienodai.
+
+**Ką daro operatorius:**  
+- Nuskaito vardą, pavardę, visus namų darbų pažymius ir egzamino pažymį.
+- Tikrina, ar įvestis teisinga (pvz., ar nėra netinkamų simbolių pažymiuose).
+- Jei įvestis neteisinga, meta išimtį, kurią programa pagauna ir išveda klaidos žinutę.
+
+---
+
+### Išvesties operatorius `operator<<`
+
+```cpp
+friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
+```
+
+**Panaudojimas:**
+- **Išvedimas į ekraną:**  
+  Leidžia patogiai išvesti studento duomenis į terminalą, pvz.:
+  ```cpp
+  cout << studentas << endl;
+  ```
+- **Išvedimas į failą:**  
+  Naudojamas rašant studentų duomenis į failą, pvz.:
+  ```cpp
+  ofstream out("rezultatai.txt");
+  out << studentas << endl;
+  ```
+
+**Ką daro operatorius:**  
+- Išveda vardą, pavardę, visus namų darbų pažymius ir egzamino pažymį vienoje eilutėje.
+- Užtikrina, kad duomenų formatas būtų vienodas tiek ekrane, tiek faile.
+
+---
+
+### Apibendrinimas
+
+- **Perdengti įvesties/išvesties operatoriai užtikrina universalumą:**  
+  Viena logika veikia tiek su failais, tiek su konsolės įvedimu/išvedimu.
+- **Rankinis įvedimas:**  
+  Galima įvesti tiek viena eilute, tiek po vieną lauką – operatorius veikia abiem atvejais.
+- **Automatinis generavimas:**  
+  Duomenys perduodami tiesiai į konstruktorių, bet išvedimui naudojamas tas pats operatorius.
+- **Failinis įvedimas/išvedimas:**  
+  Kiekviena eilutė apdorojama per operatorių, todėl nereikia papildomų formatavimo funkcijų.
+
+---
+
+**Pavyzdys:**
+
+```cpp
+// Įvedimas iš failo
+std::ifstream in("studentai.txt");
+Studentas s;
+while (in >> s) {
+    // ...
+}
+
+// Rankinis įvedimas viena eilute
+std::string eilute;
+std::getline(std::cin, eilute);
+std::stringstream ss(eilute);
+ss >> s;
+
+// Išvedimas į ekraną arba failą
+std::cout << s << std::endl;
+std::ofstream out("rez.txt");
+out << s << std::endl;
+```
+
+---
+
+**Išvada:**  
+Naudojant perdengtus operatorius, programa tampa lanksti, lengvai prižiūrima ir universali – visi įvedimo/išvedimo būdai veikia vienodai, o duomenų formatas išlieka nuoseklus.
+
 ### Autorius 
 Rokas Venckus
