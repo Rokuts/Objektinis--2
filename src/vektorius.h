@@ -120,7 +120,7 @@ void Vektorius<T>::push_back(const T &value)
 {
     ensure_capacity(size_ + 1);
     data_[size_] = value;
-   
+    ++size_;
 }
 
 template <typename T>
