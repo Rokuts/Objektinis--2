@@ -35,6 +35,7 @@ int gauti_skaiciu(string zinute, int min, int max, bool minus1){
             return skaicius;
         } 
         else if (skaicius < min || skaicius > max){         //tikriname ar skaicius yra tinkamame intervale;
+            if (min > max) return skaicius;
             cout << "Klaida!!! Iveskite skaiciu nuo " << min << " iki " << max << ". Bandykite dar karta"<<endl;
         }    
         else {
@@ -307,7 +308,7 @@ void greitaveikla_su_vektoriumi_ir_std_vector()
     auto pabaiga1 = high_resolution_clock::now();
     auto trukme1 = duration<double>(pabaiga1 - pradzia1);
 
-    cout << "Vektorius: " << iteracijos << " iteracijų trukmė: " << trukme1.count() << " seconds" << endl;
+    cout << "Vektorius: " << iteracijos << " iteraciju trukme: " << trukme1.count() << " seconds" << endl;
 
     auto pradzia2 = high_resolution_clock::now();
     std::vector<int> v2;
@@ -318,7 +319,7 @@ void greitaveikla_su_vektoriumi_ir_std_vector()
     auto pabaiga2 = high_resolution_clock::now();
     auto trukme2 = duration<double>(pabaiga2 - pradzia2);
 
-    cout << "std::vector: " << iteracijos << " iteracijų trukmė: " << trukme2.count() << " seconds" << endl;
+    cout << "std::vector: " << iteracijos << " iteraciju trukme: " << trukme2.count() << " seconds" << endl;
     cout << "Greitaveiklos su Vektorius ir std::vector tyrimas baigtas." << endl;
     
 }
