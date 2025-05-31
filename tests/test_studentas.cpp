@@ -36,6 +36,8 @@ TEST(StudentasTest, MoveConstructor) {
     std::vector<int> nd = {4, 5};
     Studentas s1("C", "D", 8, nd);
     Studentas s2(std::move(s1));
+    EXPECT_EQ(s2.getVardas(), "C");
+    EXPECT_EQ(s2.getPavarde(), "D");
     EXPECT_EQ(s2.getEgzas(), 8);
     EXPECT_EQ(s2.getNamuDarbai(), nd);
 }
@@ -44,6 +46,8 @@ TEST(StudentasTest, CopyAssignment) {
     Studentas s1("E", "F", 6, {1,2});
     Studentas s2;
     s2 = s1;
+    EXPECT_EQ(s2.getVardas(), "E");
+    EXPECT_EQ(s2.getPavarde(), "F");
     EXPECT_EQ(s2.getEgzas(), 6);
     EXPECT_EQ(s2.getNamuDarbai(), std::vector<int>({1,2}));
 }
