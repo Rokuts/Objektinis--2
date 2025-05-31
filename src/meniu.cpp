@@ -15,4 +15,5 @@ void meniu()
     cout << "10. Tyrimas su strategijom" << endl;
     cout << "11. Klases testavimas" << endl;
     cout << "12. Atspausdinti studentus" << endl;
+    cout << "13. Greitaveikla su Vektorius ir std::vector" << endl;
 }

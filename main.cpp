@@ -16,7 +16,7 @@ int main(){
     while(true){
         meniu();
         int pasirinkimas;
-        pasirinkimas = gauti_skaiciu("Iveskite norima varianta.", 1, 12);
+        pasirinkimas = gauti_skaiciu("Iveskite norima varianta.", 1, 13);
         switch(pasirinkimas){
             case 1:
                 ivedimas_ranka(S, ilgiausias_vardas, ilgiausia_pavarde);
@@ -53,6 +53,9 @@ int main(){
                 return 0;            
             case 12:
                 atspauzdinti_studentus(S, cout);
+                break;
+            case 13:
+                greitaveikla_su_vektoriumi_ir_std_vector();
                 break;
 
         }

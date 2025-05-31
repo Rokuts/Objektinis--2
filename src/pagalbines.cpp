@@ -294,3 +294,32 @@ void test_klases()
 
 }
 
+void greitaveikla_su_vektoriumi_ir_std_vector()
+{
+    unsigned int iteracijos = gauti_skaiciu("Kiek iteraciju norite atlikti?", 1, numeric_limits<unsigned int>::max());
+    cout << "Greitaveiklos su Vektorius ir std::vector tyrimas pradedamas..." << endl;
+
+    auto pradzia1 = high_resolution_clock::now();
+    Vektorius<int> v1;
+    for (unsigned int i = 0; i < iteracijos; ++i) {
+        v1.push_back(i);
+    }
+    auto pabaiga1 = high_resolution_clock::now();
+    auto trukme1 = duration<double>(pabaiga1 - pradzia1);
+
+    cout << "Vektorius: " << iteracijos << " iteracijų trukmė: " << trukme1.count() << " seconds" << endl;
+
+    auto pradzia2 = high_resolution_clock::now();
+    std::vector<int> v2;
+    for (unsigned int i = 0; i < iteracijos; ++i) {
+        v2.push_back(i);
+    }
+
+    auto pabaiga2 = high_resolution_clock::now();
+    auto trukme2 = duration<double>(pabaiga2 - pradzia2);
+
+    cout << "std::vector: " << iteracijos << " iteracijų trukmė: " << trukme2.count() << " seconds" << endl;
+    cout << "Greitaveiklos su Vektorius ir std::vector tyrimas baigtas." << endl;
+    
+}
+

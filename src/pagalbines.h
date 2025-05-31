@@ -4,6 +4,7 @@
 #include "ivedimas.h"
 #include "isvedimas.h"
 #include "rusiavimas.h"
+#include "vektorius.h"
 
 int atsitiktinis_skaicius(int min, int max);
 bool ar_tik_raides(const string& zodis);
@@ -17,6 +18,8 @@ bool paklausiam_ar_rodyti_vidurki();
 void laiko_tyrimas();
 void tyrimas_su_strategijom();
 void test_klases();
+void greitaveikla_su_vektoriumi_ir_std_vector();
+
 
 
 static const vector<string> vardai = {
