@@ -459,6 +459,12 @@ try {
 }
 ```
 
+#### 5. `clear()`
+Ištrina visus vektoriaus elementus ir atlaisvina atmintį.
+```cpp
+v.clear(); // vektorius tampa tuščias, size() == 0, capacity() == 0
+```
+
 
 
 
