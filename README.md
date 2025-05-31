@@ -449,6 +449,16 @@ v[0] = 5; // Pakeičia pirmą elementą į 5
 int x = v[1]; // x = 20
 ```
 
+#### 4. `at(size_t idx)`
+Grąžina nuorodą į elementą pagal indeksą, bet meta išimtį, jei indeksas neteisingas.
+```cpp
+try {
+    int y = v.at(2); // Mėginant pasiekti neegzistuojantį elementą bus išmesta std::out_of_range
+} catch (const std::out_of_range& e) {
+    std::cout << "Klaida: " << e.what() << std::endl;
+}
+```
+
 
 
 
