@@ -442,6 +442,13 @@ v.push_back(20);
 v.pop_back(); // Paskutinis elementas pašalinamas, vektorius tampa [10]
 ```
 
+#### 3. `operator[](size_t idx)`
+Leidžia pasiekti elementą pagal indeksą kaip masyve. Nenaudoja ribų tikrinimo.
+```cpp
+v[0] = 5; // Pakeičia pirmą elementą į 5
+int x = v[1]; // x = 20
+```
+
 
 
 
