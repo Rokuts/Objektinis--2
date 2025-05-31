@@ -376,5 +376,51 @@ out << s << std::endl;
 **Išvada:**  
 Naudojant perdengtus operatorius, programa tampa lanksti, lengvai prižiūrima ir universali – visi įvedimo/išvedimo būdai veikia vienodai, o duomenų formatas išlieka nuoseklus.
 
+**Abstrakti klasė `Zmogus` ir paveldėjimas**
+-
+
+Sukurta **abstrakti bazinė klasė** `Zmogus`, kuri apibrėžia bendrus laukus ir metodus visiems žmonių tipams (pvz., vardas, pavardė). Ši klasė negali būti instancijuojama tiesiogiai – ji skirta tik paveldėjimui.
+
+```cpp
+class Zmogus {
+protected:
+    string vardas_;
+    string pavarde_;
+public:
+    Zmogus() = default;
+    Zmogus(const string& vardas, const string& pavarde);
+    virtual ~Zmogus() = 0; // Abstraktus destruktorius
+    string getVardas() const;
+    string getPavarde() const;
+};
+```
+
+Iš `Zmogus` klasės paveldima **studentų klasė** `Studentas`, kuri papildo bazinę informaciją studentui būdingais laukais (pvz., pažymiai, egzamino rezultatas) ir metodais (pvz., vidurkio/medianų skaičiavimas).
+
+```cpp
+class Studentas : public Zmogus {
+private:
+    int egzas_;
+    std::vector<int> n_;
+public:
+    Studentas();
+    Studentas(const std::string& vardas, const std::string& pavarde, int egzas, const std::vector<int>& n);
+    // ... kiti metodai ...
+};
+```
+
+**Nauda:**  
+Toks objektinis dizainas leidžia lengvai plėsti programą – ateityje galima pridėti kitų žmonių tipų (pvz., dėstytojų) klases, paveldinčias iš `Zmogus`, ir užtikrinti bendrą sąsają visiems žmonėms.
+
+
+> **Pastaba:**  
+> Klasė `Zmogus` turi abstraktų destruktorių, todėl negalima sukurti `Zmogus` objekto tiesiogiai:
+> 
+> ```cpp
+> // Zmogus z("Vardenis", "Pavardenis"); // Klaida: negalima instancijuoti abstrakčios klasės
+> ```
+
+---
+
 ### Autorius 
 Rokas Venckus
