@@ -78,80 +78,89 @@ Vektorius<T>::~Vektorius()
 template <typename T>
 void Vektorius<T>::push_back(const T &value)
 {
-    if (size_ == capacity_) {
-        size_t new_capacity = capacity_ ? capacity_ * 2 : 1;
-        T* new_data = new T[new_capacity];
-        for (size_t i = 0; i < size_; ++i)
-            new_data[i] = std::move(data_[i]);
-        delete[] data_;
-        data_ = new_data;
-        capacity_ = new_capacity;
-    }
-    data_[size_++] = value;
+    ensure_capacity(size_ + 1);
+    data_[size_] = value;
+   
 }
 
 template <typename T>
 void Vektorius<T>::pop_back()
 {
+    if (size_ == 0) throw std::out_of_range("Vektorius is empty");
+    --size_;
 }
 
 template <typename T>
 T &Vektorius<T>::operator[](size_t idx)
 {  
+    return data_[idx];
 }
 
 template <typename T>
 const T &Vektorius<T>::operator[](size_t idx) const
 {
+    return data_[idx];
 }
 
 template <typename T>
 T &Vektorius<T>::at(size_t idx)
 {
+    if (idx >= size_) throw std::out_of_range("Index out of range");
+    return data_[idx];
 }
 
 template <typename T>
 const T &Vektorius<T>::at(size_t idx) const
 {
+    if (idx >= size_) throw std::out_of_range("Index out of range");
+    return data_[idx];
 }
 
 template <typename T>
 size_t Vektorius<T>::size() const
 {
+    return size_;
 }
 
 template <typename T>
 size_t Vektorius<T>::capacity() const
 {
+    return capacity_;
 }
 
 template <typename T>
 bool Vektorius<T>::empty() const
 {
+    size_ = 0;
 }
 
 template <typename T>
 void Vektorius<T>::clear()
 {
+    return data_;
 }
 
 template <typename T>
 T *Vektorius<T>::begin()
 {
+    return data_;
 }
 
 template <typename T>
 const T *Vektorius<T>::begin() const
 {
+    return data_;
 }
 
 template <typename T>
 T *Vektorius<T>::end()
 {
+    return data_ + size_;
 }
 
 template <typename T>
 const T *Vektorius<T>::end() const
 {
+    return data_ + size_;
 }
 
