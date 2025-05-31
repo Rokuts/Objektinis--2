@@ -465,7 +465,14 @@ Ištrina visus vektoriaus elementus ir atlaisvina atmintį.
 v.clear(); // vektorius tampa tuščias, size() == 0, capacity() == 0
 ```
 
-
+#### 6. Kopijavimo operatorius `operator=`
+Leidžia priskirti vieną vektorių kitam (deep copy).
+```cpp
+Vektorius<int> v1;
+v1.push_back(1);
+Vektorius<int> v2;
+v2 = v1; // v2 tampa v1 kopija
+```
 
 
 
