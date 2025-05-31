@@ -41,3 +41,69 @@ template <typename T>
 void Vektorius<T>::push_back(const T &value)
 {
 }
+
+template <typename T>
+void Vektorius<T>::pop_back()
+{
+}
+
+template <typename T>
+T &Vektorius<T>::operator[](size_t idx)
+{  
+}
+
+template <typename T>
+const T &Vektorius<T>::operator[](size_t idx) const
+{
+}
+
+template <typename T>
+T &Vektorius<T>::at(size_t idx)
+{
+}
+
+template <typename T>
+const T &Vektorius<T>::at(size_t idx) const
+{
+}
+
+template <typename T>
+size_t Vektorius<T>::size() const
+{
+}
+
+template <typename T>
+size_t Vektorius<T>::capacity() const
+{
+}
+
+template <typename T>
+bool Vektorius<T>::empty() const
+{
+}
+
+template <typename T>
+void Vektorius<T>::clear()
+{
+}
+
+template <typename T>
+T *Vektorius<T>::begin()
+{
+}
+
+template <typename T>
+const T *Vektorius<T>::begin() const
+{
+}
+
+template <typename T>
+T *Vektorius<T>::end()
+{
+}
+
+template <typename T>
+const T *Vektorius<T>::end() const
+{
+}
+
