@@ -1,12 +1,11 @@
 #pragma once
 
 #include "headers.h"
+#include "zmogus.h"
 
 
-class Studentas {
+class Studentas: public Zmogus {
 private:
-
-    std::string vardas_, pavarde_;
     int egzas_;
     std::vector<int> n_;
 
@@ -23,24 +22,18 @@ public:
      * Konstruktorius, kuris sukuria studentą su nurodytais duomenimis.
      */
     Studentas(const std::string& vardas, const std::string& pavarde, int egzas, const std::vector<int>& n) 
-        : vardas_(vardas), pavarde_(pavarde), egzas_(egzas), n_(n) {}
+        : Zmogus(vardas, pavarde), egzas_(egzas), n_(n) {}
 
     // Copy constructor
     Studentas(const Studentas& other)
-        : vardas_(other.vardas_), pavarde_(other.pavarde_), egzas_(other.egzas_), n_(other.n_) {}
+        : Zmogus(other.vardas_, other.pavarde_), egzas_(other.egzas_), n_(other.n_) {}
     
     // Move constructor
     Studentas(Studentas&& other) noexcept
-        : vardas_(std::move(other.vardas_)), pavarde_(std::move(other.pavarde_)),
+        : Zmogus(std::move(other.vardas_), std::move(other.pavarde_)),
           egzas_(other.egzas_), n_(std::move(other.n_)) {}
 
 
-    inline string getVardas() const {
-        return vardas_;
-    }
-    inline string getPavarde() const {
-        return pavarde_;
-    }
     inline int getEgzas() const {
         return egzas_;
     }
@@ -80,7 +73,7 @@ public:
         return *this; 
     }
 
-    ~Studentas() {
+    ~Studentas() override {
         // Pilnai realizuotas destruktorius. Kadangi klasė nenaudoja dinaminės atminties,
         // čia nereikia nieko papildomai atlaisvinti. Visi nariai sunaikinami automatiškai.
     }
