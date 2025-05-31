@@ -56,6 +56,8 @@ TEST(StudentasTest, MoveAssignment) {
     Studentas s1("G", "H", 10, {3,4});
     Studentas s2;
     s2 = std::move(s1);
+    EXPECT_EQ(s2.getVardas(), "G");
+    EXPECT_EQ(s2.getPavarde(), "H");
     EXPECT_EQ(s2.getEgzas(), 10);
     EXPECT_EQ(s2.getNamuDarbai(), std::vector<int>({3,4}));
 }
@@ -93,6 +95,8 @@ TEST(StudentasTest, InputOperator) {
     std::istringstream iss("Vardas Pavarde 7 8 9 10");
     Studentas s;
     iss >> s;
+    EXPECT_EQ(s.getVardas(), "Vardas");
+    EXPECT_EQ(s.getPavarde(), "Pavarde");
     EXPECT_EQ(s.getEgzas(), 10);
     EXPECT_EQ(s.getNamuDarbai(), std::vector<int>({7,8,9}));
 }
